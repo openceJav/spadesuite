@@ -38,6 +38,56 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- HikariCP Dependency -->
+        <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+
+
+        <!-- PostGreSQL Dependency -->
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
+        </dependency>
+
+
+        <!-- TinyLog Logging Dependency -->
+        <!-- https://mvnrepository.com/artifact/org.tinylog/tinylog-api -->
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-api</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.tinylog/tinylog-impl -->
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-impl</artifactId>
+            <version>2.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Apache Commons Lang3 Dependency -->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+
+        <!-- MaterialFX Dependency (Optional) -->
+        <!-- https://mvnrepository.com/artifact/io.github.palexdev/materialfx -->
+        <dependency>
+            <groupId>io.github.palexdev</groupId>
+            <artifactId>materialfx</artifactId>
+            <version>11.17.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -60,7 +110,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.opencejav.spadesuite/org.opencejav.spadesuite.HelloApplication</mainClass>
+                            <mainClass>org.opencejav.spadesuite/org.opencejav.spadesuite.App</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
