@@ -11,7 +11,6 @@ import java.util.Objects;
 public class App extends Application {
     private static final String DEFAULT_CSS_RESOURCE_FILE_PATH = "css/";
 
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("spade-login.fxml"));
