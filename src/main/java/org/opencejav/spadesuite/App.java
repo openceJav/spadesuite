@@ -16,6 +16,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("spade-login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Spade Suite - Apartment Management System");
+        setupStyleSheets(scene, "base.css");
         stage.setScene(scene);
         stage.show();
     }
