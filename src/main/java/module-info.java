@@ -6,8 +6,9 @@ module org.opencejav.spadesuite {
     requires java.sql;
     requires org.postgresql.jdbc;
 
-    // Apache Commons
+    // Util Tooling
     requires org.apache.commons.lang3;
+    requires javatuples;
 
     // HikariCP
     requires com.zaxxer.hikari;

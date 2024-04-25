@@ -81,6 +81,23 @@
             <version>3.14.0</version>
         </dependency>
 
+        <!-- Javatuples Dependency -->
+        <!-- https://mvnrepository.com/artifact/org.javatuples/javatuples -->
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- Hibernate Dependency -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.4.4.Final</version>
+        </dependency>
+
+
         <!-- MaterialFX Dependency (Optional) -->
         <!-- https://mvnrepository.com/artifact/io.github.palexdev/materialfx -->
         <dependency>
