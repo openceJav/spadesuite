@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'Mappers
+interface Mappable<T> {
+    + map(object: T) : T
+    + fromMap(object: T) : T
+    + toMap(object: T) : Map<String, Object>
+}
+
+class PropertyOwnerMapper extends Mappable<PropertyOwner> {
+    + map(object: PropertyOwner) : PropertyOwner
+    + fromMap(object: PropertyOwner) : PropertyOwner
+    + toMap(object: PropertyOwner) : Map<String, PropertyOwner>
+}
+
+class TenantMapper extends Mappable<Tenant> {
+    + map(object: Tenant) : Tenant
+    + fromMap(object: Tenant) : Tenant
+    + toMap(object: Tenant) : Map<String, Tenant>
+}
+
+class PropertyMapper extends Mappable<Property>{
+    + map(object: Property) : Property
+    + fromMap(object: Property) : Property
+    + toMap(object: Property) : Map<String, Property>
+}
+
+
+class LeaseMapper extends Mappable<Lease> {
+    + map(object: Lease) : Lease
+    + fromMap(object: Lease) : Lease
+    + toMap(object: Lease) : Map<String, Lease>
+}
+@enduml

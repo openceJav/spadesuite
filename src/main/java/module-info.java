@@ -27,10 +27,16 @@ module org.opencejav.spadesuite {
     opens org.opencejav.spadesuite.models to javafx.base;
     opens org.opencejav.spadesuite.dao to javafx.base;
     opens org.opencejav.spadesuite.enums to javafx.base;
-    opens org.opencejav.spadesuite.repository to javafx.base;
+
+    opens org.opencejav.spadesuite.dto to javafx.base;
+    opens org.opencejav.spadesuite.exceptions to javafx.base;
+    opens org.opencejav.spadesuite.annotations to javafx.base;
+
+    // Utils
     opens org.opencejav.spadesuite.utils.common to javafx.base;
+    opens org.opencejav.spadesuite.utils.db to javafx.base;
     opens org.opencejav.spadesuite.utils.helpers to javafx.base;
-    // opens org.opencejav.spadesuite.utils to javafx.base; <-- Later
 
     exports org.opencejav.spadesuite;
+    opens org.opencejav.spadesuite.models.mappers to javafx.base;
 }

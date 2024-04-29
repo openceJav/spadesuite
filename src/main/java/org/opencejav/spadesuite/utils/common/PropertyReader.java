@@ -3,35 +3,60 @@ package org.opencejav.spadesuite.utils.common;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 
 import org.opencejav.spadesuite.annotations.UtilityClass;
 import org.opencejav.spadesuite.exceptions.PropertyNotFoundException;
+import org.opencejav.spadesuite.utils.helpers.validator.Validator;
 import org.tinylog.Logger;
 
 // TODO Refactor & JavaDocify PropertyReader Utility Class
 
 @UtilityClass(className = "PropertyReader")
-public class PropertyReader implements Serializable {
+public final class PropertyReader implements Serializable {
     private static final String DEFAULT_PROPERTY_PATH = Objects.requireNonNull(
             Thread.currentThread().getContextClassLoader().getResource("app.properties")).getPath();
-    private static final Properties PROPERTIES = new Properties();
-
+    private static Properties prop;
 
     private PropertyReader() {
         // Private Constructor, Prevent Object Instantiation.
     }
 
+    public static <T, K> boolean writePropertiesToFile(HashMap<T, K> properties, String propPath) {
+        Validator<HashMap<T, K>> validator = Validator.of(properties);
+
+        List<String> errors = validator
+                .addRule(Validator::nonNull, "Properties Map Cannot be Null.")
+                .addRule(Validator::nonEmpty, "Properties Map Cannot be Empty.")
+                .validate(properties);
+
+        if (properties.isEmpty() || propPath == null) {
+            Logger.error("Error Writing Properties, Empty Map Provived or Path is Null.");
+            return false;
+        }
+
+        Properties prop = new Properties(0);
+        properties.forEach((key, value) -> prop.setProperty(key.toString(), value.toString()));
+
+        return true;
+    }
+
+
     public static void loadPropertiesFromFile(String propPath) throws PropertyNotFoundException {
+        Properties prop = new Properties(0);
+
+
         try (FileInputStream fileInputStream = new FileInputStream(propPath)) {
-            PROPERTIES.load(fileInputStream);
+            prop.load(fileInputStream);
 
         } catch (IOException e) {
             Logger.error("Error Loading Properties File Path Provided: %s".formatted(propPath));
 
             try(FileInputStream fileInputStream = new FileInputStream(DEFAULT_PROPERTY_PATH)) {
-                PROPERTIES.load(fileInputStream);
+                prop.load(fileInputStream);
 
             } catch (IOException ex) {
                 Logger.error("Error Loading Default Properties File.");
@@ -42,15 +67,16 @@ public class PropertyReader implements Serializable {
     }
 
     //region Utility Methods: unloadProperties(), readPropertyFromKey(String, String), readPropertyFromKey(String)
-    public static void unloadProperties() {
-        PROPERTIES.clear();
+    public static void unloadProperties(Properties prop) {
+        prop.clear();
     }
 
     public static String readPropertyFromKey(String propPath, String key) {
-        if (PROPERTIES.isEmpty()) loadPropertiesFromFile(propPath);
+        if (prop.isEmpty()) loadPropertiesFromFile(propPath);
 
         try {
-            String property = PROPERTIES.getProperty(key);
+            String property = prop.getProperty(key);
+
             if (property == null) {
                 throw new PropertyNotFoundException("Property Not Found for Key: %s".formatted(key));
             }
