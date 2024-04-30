@@ -3,11 +3,14 @@ package org.opencejav.spadesuite.models;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.javatuples.Unit;
 import org.opencejav.spadesuite.enums.PropertyType;
+import org.opencejav.spadesuite.models.records.Address;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@SuppressWarnings("all")
+// TODO JavaDocify Property Class
 public final class Property {
     private UUID id;
     private final String propertyName;
@@ -116,6 +119,8 @@ public final class Property {
         public Property build() {
             return new Property(this);
         }
+
+        // TODO Implement isValidPropertyBuild() Method
     }
 
     @Override
@@ -133,7 +138,7 @@ public final class Property {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) return true;
         if (obj == null || this.getClass() != obj.getClass()) return false;
 
@@ -149,8 +154,20 @@ public final class Property {
 
     @Override
     public String toString() {
-        // TODO Implement toString Method
-
-        return null;
+        return String.format("""
+                %s {
+                    id: %s,
+                    propertyName: %s,
+                    propertyOwner: %s,
+                    address: %s,
+                    propertyType: %s,
+                    availableUnits: %s,
+                    rentedUnits: %s
+                }
+                """,
+                this.getClass().getCanonicalName(), this.getId(),
+                this.getPropertyName(), this.getPropertyOwner(),
+                this.getAddress(), this.getPropertyType(),
+                this.getAvailableUnits(), this.getRentedUnits());
     }
 }

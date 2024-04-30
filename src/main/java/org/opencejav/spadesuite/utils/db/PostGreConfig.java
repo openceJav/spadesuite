@@ -12,13 +12,10 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
-// TODO Fix PostGreConfig Utility Class
-
 @UtilityClass(className = "PostGreConfig")
-@SuppressWarnings("all")
 public final class PostGreConfig implements Serializable {
     /* HikariConfig */
-    private HikariConfig config = new HikariConfig();
+    private final HikariConfig config = new HikariConfig();
 
     private String filePath;
     private Duration sessionTimeout;
@@ -38,6 +35,7 @@ public final class PostGreConfig implements Serializable {
         this.leakDetectionThreshold = builder.leakDetectionThreshold;
     }
 
+    @SuppressWarnings("all")
     public static class PostGreConfigBuilder {
         //region DEFAULTS
         private static String DEFAULT_PATH;
@@ -201,6 +199,18 @@ public final class PostGreConfig implements Serializable {
 
     @Override
     public String toString() {
-        return null;
+        return String.format("""
+                %s {
+                    filePath: %s,
+                    sessionTimeout: %s,
+                    connectionTimeout: %s,
+                    maxPoolingSize: %s,
+                    leakDetectionThreshold: %s
+                }
+                """,
+                this.getClass().getCanonicalName(),
+                this.getFilePath(), this.getSessionTimeout(),
+                this.getConnectionTimeout(), this.getMaxPoolingSize(),
+                this.getLeakDetectionThreshold());
     }
 }

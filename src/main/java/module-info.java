@@ -39,4 +39,5 @@ module org.opencejav.spadesuite {
 
     exports org.opencejav.spadesuite;
     opens org.opencejav.spadesuite.models.mappers to javafx.base;
+    opens org.opencejav.spadesuite.models.records to javafx.base;
 }

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+@SuppressWarnings("all")
 public class App extends Application {
     private static final String DEFAULT_CSS_RESOURCE_FILE_PATH = "css/";
 

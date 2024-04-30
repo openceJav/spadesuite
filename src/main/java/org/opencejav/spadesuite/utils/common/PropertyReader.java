@@ -4,18 +4,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 
 import org.opencejav.spadesuite.annotations.UtilityClass;
 import org.opencejav.spadesuite.exceptions.PropertyNotFoundException;
-import org.opencejav.spadesuite.utils.helpers.validator.Validator;
 import org.tinylog.Logger;
 
-// TODO Refactor & JavaDocify PropertyReader Utility Class
-
 @UtilityClass(className = "PropertyReader")
+@SuppressWarnings("all")
+// TODO Refactor & JavaDocify PropertyReader Utility Class
 public final class PropertyReader implements Serializable {
     private static final String DEFAULT_PROPERTY_PATH = Objects.requireNonNull(
             Thread.currentThread().getContextClassLoader().getResource("app.properties")).getPath();
@@ -26,15 +24,10 @@ public final class PropertyReader implements Serializable {
     }
 
     public static <T, K> boolean writePropertiesToFile(HashMap<T, K> properties, String propPath) {
-        Validator<HashMap<T, K>> validator = Validator.of(properties);
-
-        List<String> errors = validator
-                .addRule(Validator::nonNull, "Properties Map Cannot be Null.")
-                .addRule(Validator::nonEmpty, "Properties Map Cannot be Empty.")
-                .validate(properties);
+        // TODO Validate Properties & Path
 
         if (properties.isEmpty() || propPath == null) {
-            Logger.error("Error Writing Properties, Empty Map Provived or Path is Null.");
+            Logger.error("Error Writing Properties, Empty Map Provided or Path is Null.");
             return false;
         }
 
@@ -55,7 +48,7 @@ public final class PropertyReader implements Serializable {
         } catch (IOException e) {
             Logger.error("Error Loading Properties File Path Provided: %s".formatted(propPath));
 
-            try(FileInputStream fileInputStream = new FileInputStream(DEFAULT_PROPERTY_PATH)) {
+            try (FileInputStream fileInputStream = new FileInputStream(DEFAULT_PROPERTY_PATH)) {
                 prop.load(fileInputStream);
 
             } catch (IOException ex) {

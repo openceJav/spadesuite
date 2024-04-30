@@ -1,7 +1,7 @@
 package org.opencejav.spadesuite.models.mappers;
 
 import org.opencejav.spadesuite.annotations.UtilityClass;
-import org.opencejav.spadesuite.models.Lease;
+import org.opencejav.spadesuite.models.records.Lease;
 
 import java.util.Map;
 
