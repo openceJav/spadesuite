@@ -9,10 +9,11 @@ import org.tinylog.Logger;
 import java.io.*;
 import java.net.URL;
 import java.time.Duration;
-import java.util.List;
 import java.util.Properties;
 
 @UtilityClass(className = "PostGreConfig")
+@SuppressWarnings("all")
+// TODO JavaDocify PostGreConfig Class
 public final class PostGreConfig implements Serializable {
     /* HikariConfig */
     private final HikariConfig config = new HikariConfig();
@@ -130,29 +131,23 @@ public final class PostGreConfig implements Serializable {
         }
 
         public PostGreConfig build() {
-            PostGreConfig postGreConfig = isValidPostGreConfigBuild(this);
-            return postGreConfig;
+            isValidPostGreConfigBuild();
+            return new PostGreConfig(this);
         }
 
 
-        // TODO Fix This Method and Validator Utility Class
-        private PostGreConfig isValidPostGreConfigBuild(PostGreConfigBuilder postGreConfigBuilder) {
-            Validator<PostGreConfig> validator = new Validator<>();
+        // TODO Check this Method for Validity (Refactor if Necessary)
+        private void isValidPostGreConfigBuild() {
+            Validator<PostGreConfigBuilder> validator = Validator.of(this);
 
-            List<String> errors = validator
+            // FIXME Add More Rules for PostGreConfig If Necessary
+            var validPostGreConfig = validator
                     .addRule(p -> p.filePath != null, "File Path is Required.")
                     .addRule(p -> p.sessionTimeout != null, "Session Timeout is Required.")
                     .addRule(p -> p.connectionTimeout != null, "Connection Timeout is Required.")
                     .addRule(p -> p.maxPoolingSize > 0, "Max Pooling Size is Required.")
                     .addRule(p -> p.leakDetectionThreshold > 0, "Leak Detection Threshold is Required.")
-                    .validate(new PostGreConfig(postGreConfigBuilder));
-
-            if (errors.size() > 0) {
-                Logger.error("PostGreConfig Validation Failed.");
-                throw new IllegalArgumentException("PostGreConfig Validation Failed.");
-            }
-
-            return new PostGreConfig(postGreConfigBuilder);
+                    .getErrors();
         }
     }
 
