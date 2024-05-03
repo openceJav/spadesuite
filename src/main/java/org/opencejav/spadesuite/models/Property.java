@@ -1,9 +1,10 @@
 package org.opencejav.spadesuite.models;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.javatuples.Unit;
+import org.opencejav.spadesuite.models.records.Unit;
 import org.opencejav.spadesuite.enums.PropertyType;
 import org.opencejav.spadesuite.models.records.Address;
+import org.opencejav.spadesuite.utils.helpers.validator.Validator;
 
 import java.util.List;
 import java.util.Objects;
@@ -117,10 +118,31 @@ public final class Property {
         }
 
         public Property build() {
+            isValidPropertyBuild();
             return new Property(this);
         }
 
-        // TODO Implement isValidPropertyBuild() Method
+        // TODO Check this Method for Validity (Refactor if Necessary)
+        private void isValidPropertyBuild() {
+            Validator<PropertyBuilder> validator = Validator.of(this);
+
+            // FIXME Add More Rules for Property If Necessary
+            var propertyBuilder = validator
+                    .addRule(pb -> pb.id != null, "Property ID is Required.")
+                    .addRule(pb -> pb.propertyName != null, "Property Name is Required.")
+                    .addRule(pb -> pb.propertyOwner != null, "Property Owner is Required.")
+                    .addRule(pb -> pb.address != null, "Address is Required.")
+                    .addRule(pb -> pb.propertyType != null, "Property Type is Required.")
+                    .addRule(pb -> pb.availableUnits != null, "Available Units is Required.")
+                    .addRule(pb -> pb.rentedUnits != null, "Rented Units is Required.")
+                    .addRule(pb -> pb.propertyName instanceof String, "Property Name must be a String.")
+                    .addRule(pb -> pb.propertyOwner instanceof PropertyOwner, "Property Owner must be a PropertyOwner.")
+                    .addRule(pb -> pb.address instanceof Address, "Address must be an Address.")
+                    .addRule(pb -> pb.propertyType instanceof PropertyType, "Property Type must be a PropertyType.")
+                    .addRule(pb -> pb.availableUnits instanceof List<?>, "Available Units must be a List.")
+                    .addRule(pb -> pb.rentedUnits instanceof List<?>, "Rented Units must be a List.")
+                    .getErrors();
+        }
     }
 
     @Override

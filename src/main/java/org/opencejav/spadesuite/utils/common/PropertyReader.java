@@ -16,7 +16,7 @@ import org.tinylog.Logger;
 // TODO Refactor & JavaDocify PropertyReader Utility Class
 public final class PropertyReader implements Serializable {
     private static final String DEFAULT_PROPERTY_PATH = Objects.requireNonNull(
-            Thread.currentThread().getContextClassLoader().getResource("app.properties")).getPath();
+            Thread.currentThread().getContextClassLoader().getResource("org/opencejav/spadesuite/app.properties")).getPath();
     private static Properties prop;
 
     private PropertyReader() {

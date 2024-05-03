@@ -4,13 +4,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.opencejav.spadesuite.exceptions.StylesheetNotFoundException;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.util.Objects;
 
 @SuppressWarnings("all")
 public class App extends Application {
-    private static final String DEFAULT_CSS_RESOURCE_FILE_PATH = "css/";
+    private static final String RELATIVE_PATH = "src/main/java/org/opencejav/spadesuite/css/";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -26,11 +28,22 @@ public class App extends Application {
         launch();
     }
 
+    private static void checkStyleSheetExistence(String sheet) throws StylesheetNotFoundException {
+        var resource = App.class.getResource("css/%s".formatted(sheet));
+
+        if (Objects.isNull(resource)) {
+            Logger.error("Stylesheet %s not found".formatted(sheet));
+            throw new StylesheetNotFoundException("Stylesheet %s not found".formatted(sheet));
+        }
+
+        Logger.info("Stylesheet %s found".formatted(sheet));
+    }
+
     private static void setupStyleSheets(Scene scene, String... styleSheets) {
         for (String sheet : styleSheets) {
-            scene.getStylesheets().add(
-                    Objects.requireNonNull(
-                            App.class.getResource(DEFAULT_CSS_RESOURCE_FILE_PATH + sheet)).toExternalForm());
+            checkStyleSheetExistence(sheet);
+            scene.getStylesheets()
+                    .add(App.class.getResource("css/%s".formatted(sheet)).toExternalForm());
         }
     }
 }

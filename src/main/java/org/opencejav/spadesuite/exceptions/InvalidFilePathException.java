@@ -1,15 +1,17 @@
 package org.opencejav.spadesuite.exceptions;
 
 public class InvalidFilePathException extends RuntimeException {
-    public InvalidFilePathException(String message) {
+    public InvalidFilePathException(final String message) {
         super(message);
     }
 
-    public InvalidFilePathException(Throwable cause) {
+    public InvalidFilePathException(final Throwable cause) {
         super(cause);
     }
 
-    public InvalidFilePathException(String message, Throwable cause) {
+    public InvalidFilePathException(
+            final String message,
+            final Throwable cause) {
         super(message, cause);
     }
 }

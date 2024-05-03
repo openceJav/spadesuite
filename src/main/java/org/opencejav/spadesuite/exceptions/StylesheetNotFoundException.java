@@ -1,15 +1,17 @@
 package org.opencejav.spadesuite.exceptions;
 
 public class StylesheetNotFoundException extends RuntimeException {
-    public StylesheetNotFoundException(String message) {
+    public StylesheetNotFoundException(final String message) {
         super(message);
     }
 
-    public StylesheetNotFoundException(Throwable cause) {
+    public StylesheetNotFoundException(final Throwable cause) {
         super(cause);
     }
 
-    public StylesheetNotFoundException(String message, Throwable cause) {
+    public StylesheetNotFoundException(
+            final String message,
+            final Throwable cause) {
         super(message, cause);
     }
 }

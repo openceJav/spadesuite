@@ -1,15 +1,17 @@
 package org.opencejav.spadesuite.exceptions;
 
 public class PropertyNotFoundException extends RuntimeException {
-    public PropertyNotFoundException(String message) {
+    public PropertyNotFoundException(final String message) {
         super(message);
     }
 
-    public PropertyNotFoundException(Throwable cause) {
+    public PropertyNotFoundException(final Throwable cause) {
         super(cause);
     }
 
-    public PropertyNotFoundException(String message, Throwable cause) {
+    public PropertyNotFoundException(
+            final String message,
+            final Throwable cause) {
         super(message, cause);
     }
 }
