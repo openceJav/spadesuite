@@ -49,6 +49,7 @@ public record Phone(String number, int CountryCode) {
             return new Phone(this.number, this.countryCode);
         }
 
+        // TODO Check this Method for Validity (Refactor if Necessary)
         public void isValidPhoneBuild() {
             Validator<PhoneBuilder> validator = Validator.of(this);
 

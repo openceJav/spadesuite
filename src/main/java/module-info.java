@@ -18,6 +18,8 @@ module org.opencejav.spadesuite {
 
     // MaterialFX
     requires MaterialFX;
+    requires jakarta.persistence;
+    requires org.hibernate.orm.core;
 
     // FXML
     opens org.opencejav.spadesuite to javafx.fxml;
