@@ -24,8 +24,15 @@
             <!-- DEFINE POSTGRESQL PASSWORD -->
         </property>
 
-        <!-- List of XML Mapped Files -->
-        <mapping resource="org.opencejav.spacesuite.models.pojo.AddressPOJO"/>
-
+        <!-- List of XML Mapped Classes -->
+        <mapping package="org.opencejav.spadesuite.models.pojo"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.AddressPOJO"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.EmailPOJO"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.LeasePOJO"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.PhonePOJO"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.PropertyOwnerPOJO"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.PropertyPOJO"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.TenantPOJO"/>
+        <mapping class="org.opencejav.spadesuite.models.pojo.UnitPOJO"/>
     </session-factory>
 </hibernate-configuration>

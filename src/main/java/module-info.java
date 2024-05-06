@@ -33,6 +33,9 @@ module org.opencejav.spadesuite {
     opens org.opencejav.spadesuite.dto to javafx.base;
     opens org.opencejav.spadesuite.exceptions to javafx.base;
     opens org.opencejav.spadesuite.annotations to javafx.base;
+    opens org.opencejav.spadesuite.models.pojo to javafx.base;
+    opens org.opencejav.spadesuite.models.records to javafx.base;
+    opens org.opencejav.spadesuite.models.mappers to javafx.base;
 
     // Utils
     opens org.opencejav.spadesuite.utils.common to javafx.base;
@@ -40,6 +43,4 @@ module org.opencejav.spadesuite {
     opens org.opencejav.spadesuite.utils.helpers to javafx.base;
 
     exports org.opencejav.spadesuite;
-    opens org.opencejav.spadesuite.models.mappers to javafx.base;
-    opens org.opencejav.spadesuite.models.records to javafx.base;
 }
