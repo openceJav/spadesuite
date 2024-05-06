@@ -25,5 +25,7 @@
         </property>
 
         <!-- List of XML Mapped Files -->
+        <mapping resource="org.opencejav.spacesuite.models.pojo.AddressPOJO"/>
+
     </session-factory>
 </hibernate-configuration>

@@ -1,5 +1,10 @@
 package org.opencejav.spadesuite.models.pojo;
 
+import org.opencejav.spadesuite.models.Tenant;
+
 public class UnitPOJO {
-    // TODO Implement UnitPOJO Class
+    private String unitId;
+    private Tenant unitOwner;
+    private int unitNumber;
+
 }
